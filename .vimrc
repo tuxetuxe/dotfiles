@@ -1,3 +1,70 @@
+" Installation Instructions
+"        1. Place file in home directory as .vimrc
+"        2. Run the following command in terminal
+"                mkdir .vim .vim/bundle .vim/backup .vim/swap .vim/cache .vim/undo; git clone https://github.com/gmarik/vundle.git .vim/bundle/vundle
+"                vim +BundleInstall +qall
+"        5. Restart Vim
+
+set nocompatible
+filetype off
+
+let s:bundle_path=$HOME."/.vim/bundle/"
+execute "set rtp+=".s:bundle_path."vundle/"
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+" Language plugins
+Bundle "bryanjswift/vim-rust"
+Bundle "elzr/vim-json"
+Bundle "empanda/vim-varnish"
+Bundle "groenewege/vim-less"
+Bundle "Glench/Vim-Jinja2-Syntax"
+Bundle "kchmck/vim-coffee-script"
+Bundle "PProvost/vim-ps1"
+Bundle "rodjek/vim-puppet"
+Bundle "tpope/vim-markdown"
+Bundle "nono/vim-handlebars"
+
+" Other plugins
+Bundle "airblade/vim-gitgutter"
+Bundle "godlygeek/tabular"
+Bundle "kien/ctrlp.vim"
+Bundle "Lokaltog/vim-easymotion"
+Bundle "Lokaltog/vim-powerline"
+Bundle "mileszs/ack.vim"
+Bundle "mhinz/vim-startify"
+Bundle "scrooloose/syntastic"
+Bundle "tpope/vim-eunuch"
+Bundle "tpope/vim-fugitive"
+
+Bundle 'tsaleh/vim-align'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-speeddating'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'maxbrunsfeld/vim-yankstack'
+Bundle 'tpope/vim-eunuch'
+
+Bundle 'michaeljsmith/vim-indent-object'
+ let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown"]
+Bundle 'bling/vim-airline'
+ let g:airline_left_sep = ''
+ let g:airline_right_sep = ''
+ let g:airline_branch_prefix = ''
+
+Bundle 'sjl/badwolf'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'zaiste/Atom'
+Bundle 'w0ng/vim-hybrid'
+Bundle 'chriskempson/base16-vim'
+Bundle 'Elive/vim-colorscheme-elive'
+Bundle 'zeis/vim-kolor'
+
+colorscheme desert
+set background=light
+
 "Enable filetype plugins
 filetype plugin on
 filetype indent on
@@ -23,8 +90,10 @@ set incsearch
 " Enable syntax highlighting
 syntax enable
 
-colorscheme desert
-set background=light
+" Seriously, guys. It's not like :W is bound to anything anyway.
+command! W :w
+
+set visualbell
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -43,15 +112,3 @@ set encoding=utf8
 """"""""""""""""""""""""""""""
 " Always show the status line
 set laststatus=2
-
-" Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-
-
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
-endfunction
